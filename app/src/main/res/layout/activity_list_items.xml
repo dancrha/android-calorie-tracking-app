@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/coordinator_layout">
+    <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:rowCount="2"
+        android:columnCount="2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".ListItemsActivity">
+
+
+        <RadioButton
+            android:id="@+id/radio_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/radiobutton"
+            android:layout_columnWeight="1"
+            android:gravity="fill">
+
+        </RadioButton>
+
+        <CheckBox
+            android:id="@+id/checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/checkbox"
+            android:layout_columnWeight="1"
+            android:gravity="fill">
+
+        </CheckBox>
+
+        <Switch
+            android:id="@+id/switch1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/switch1"
+            android:layout_columnWeight="1"
+            android:gravity="fill">
+
+        </Switch>
+
+        <ImageButton
+            android:id="@+id/imgbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:gravity="fill"
+            android:src="@android:drawable/ic_menu_camera">
+
+        </ImageButton>
+
+
+    </GridLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

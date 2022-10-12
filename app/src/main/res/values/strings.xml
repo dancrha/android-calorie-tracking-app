@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Assignment 1</string>
+    <string name="hello_message">Hello World!</string>
+    <string name="ButtonText">I\'m a button</string>
+    <string name="login_text">Login</string>
+    <string name="password">Password</string>
+    <string name="radiobutton">Radio Button</string>
+    <string name="checkbox">CheckBox</string>
+    <string name="switch1">What does this do?</string>
+    <string name="loginbtn">Login</string>
+    <string name="dialogmsg">Finish Activity?</string>
+    <string name="okbtn">Ok</string>
+    <string name="cancelbtn">Cancel</string>
+    <string name="messagePassed">Here is my response</string>
+    <string name="goodEmail">Email Verified!</string>
+    <string name="badEmail">Please enter a valid email address!</string>
+    <string name="start_chat">Start Chat</string>
+    <string name="sendbtn">Send</string>
+
+
+
+</resources>

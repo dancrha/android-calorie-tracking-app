@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Assignment 1</string>
+    <string name="hello_message">Hola Mundo!</string>
+    <string name="ButtonText">Soy un botón</string>
+    <string name="login_text">El Login</string>
+    <string name="password">Clave</string>
+    <string name="radiobutton">Boton de Radio</string>
+    <string name="checkbox">Caja</string>
+    <string name="switch1">Que hace esto?</string>
+    <string name="loginbtn">Acceso</string>
+    <string name="dialogmsg">Terminar Actividad?</string>
+    <string name="okbtn">Ok</string>
+    <string name="cancelbtn">Cancelar</string>
+    <string name="messagePassed">Aquí está mi respuesta</string>
+    <string name="goodEmail">Correo electrónico verificada!</string>
+    <string name="badEmail">¡Por favor, introduce una dirección de correo electrónico válida!</string>
+    <string name="start_chat">Comenzar chat</string>
+    <string name="sendbtn">Enviar</string>
+
+
+</resources>
