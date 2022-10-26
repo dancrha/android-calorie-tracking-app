@@ -17,39 +17,37 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidApplications"
         tools:targetApi="31">
+        <activity
+            android:name=".TestToolbar"
+            android:exported="false"
+            android:label="@string/title_activity_test_toolbar"
+            android:theme="@style/Theme.AndroidApplications.NoActionBar" />
+
         <meta-data
-        android:name="android.support.PARENT_ACTIVITY"
-        android:value="MainActivity"/>
-        //Using "MainLayoutActivity" for the value gave an error.
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="MainActivity" />
 
         <activity
             android:name=".ChatWindow"
-            android:parentActivityName=".LoginActivity"
-            android:exported="false"/>
-
-
+            android:exported="false"
+            android:parentActivityName=".LoginActivity" />
         <activity
             android:name=".ListItemsActivity"
-            android:parentActivityName=".LoginActivity"
-            android:exported="false"></activity>
+            android:exported="false"
+            android:parentActivityName=".LoginActivity" />
         <activity
             android:name=".LoginActivity"
             android:exported="true">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-
-    </activity>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".MainActivity"
-            android:parentActivityName=".LoginActivity"
-            android:exported="false">
-
-        </activity>
+            android:exported="false"
+            android:parentActivityName=".LoginActivity"></activity>
     </application>
-
-
 
 </manifest>
