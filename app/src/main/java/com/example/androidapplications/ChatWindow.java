@@ -2,8 +2,14 @@ package com.example.androidapplications;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.content.ClipData;
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
+import android.database.SQLException;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,24 +18,32 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.DatabaseUtils;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ChatWindow extends AppCompatActivity {
     final String logTAG = "ChatWindow";
     ArrayList<String> sentArray = new ArrayList<>();
+    // Database fields
+    private SQLiteDatabase database;
+    private ChatDatabaseHelper dbOpenHelper = new ChatDatabaseHelper(this);
+    private String[] columns = {ChatDatabaseHelper.KEY_ID,
+            ChatDatabaseHelper.KEY_MESSAGE};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_window);
 
+
         ListView listview = (ListView) findViewById(R.id.listviewid);
         EditText edittext = (EditText) findViewById(R.id.sendedittextid);
         Button sendbtn = (Button) findViewById(R.id.sendbuttonid);
-
-
-
         ChatAdapter messageAdapter = new ChatAdapter(this);
         listview.setAdapter(messageAdapter);
 
@@ -37,16 +51,43 @@ public class ChatWindow extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        sentArray.add(edittext.getText().toString());
+                        String text = edittext.getText().toString();
+                        sentArray.add(text);
                         messageAdapter.notifyDataSetChanged(); //restarts process of getCount()/GetView()
                         edittext.setText("");
 
-
+                        database = dbOpenHelper.getWritableDatabase();
+                        ContentValues values = new ContentValues();
+                        values.put(ChatDatabaseHelper.KEY_MESSAGE, text);
+                        long insert_message = database.insert(ChatDatabaseHelper.TABLE_Of_My_ITEMS, null, values);
+                        Cursor c = database.query(ChatDatabaseHelper.TABLE_Of_My_ITEMS, columns,
+                                ChatDatabaseHelper.KEY_MESSAGE +
+                                "=" + insert_message, null, null, null,null );
+                        c.moveToFirst();
+                        c.close();
                     }
+
                 }
         );
+        database = dbOpenHelper.getReadableDatabase();
 
+        Cursor cursor = database.query(ChatDatabaseHelper.TABLE_Of_My_ITEMS,
+                columns, null, null,
+                null, null, null);
 
+        cursor.moveToFirst();
+        while(!cursor.isAfterLast() ) {
+            @SuppressLint("Range")
+            String mess = cursor.getString(cursor.getColumnIndex(ChatDatabaseHelper.KEY_MESSAGE));
+            Log.i(logTAG, "Cursor's column count = " + cursor.getColumnCount());
+            sentArray.add(mess);
+            cursor.moveToNext();
+
+            for(int i = 0; i < cursor.getColumnCount(); i++){
+                System.out.println(cursor.getColumnName(i));
+            }
+        }
+        cursor.close();
     }
 
     private class ChatAdapter extends ArrayAdapter<String> {
@@ -81,4 +122,16 @@ public class ChatWindow extends AppCompatActivity {
             }
         }
 
+
+
+
+
+
+
+
+    protected void onDestroy(){
+        super.onDestroy();
+        Log.i("ChatDatabaseHelper", "In onDestroy()");
+        database.close();
+    }
     }
